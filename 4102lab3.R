@@ -2,6 +2,16 @@
 #Experiment notes
 #Dilute the IgG samples from lab 2 using *coating buffer*
 
+#Function call - ggplot theme
+bwtheme <- function (vector)
+{
+  vector <- vector + theme_bw()+
+            theme(axis.text.x=element_text(size=12, angle=90),
+            axis.text.y=element_text(size=12),
+            plot.title=element_text(face="bold",vjust = 1,hjust = 0.5)) 
+  return(vector)
+}
+
 #Data entry
 #Group 1
 IgG <- c(0.6,0.3,0.15,0.075,0.0375,0.01875,0.009375,0)
@@ -34,10 +44,6 @@ n1 <-   ggplot(Group1, aes(IgG, OD4501A)) +
   geom_line(color = "red") + geom_point() +
   scale_x_continuous (lim = c(0,0.6), breaks = seq(0,0.6,0.02)) +
   scale_y_continuous (breaks = seq(0,2.8, by = 0.10)) +
-  theme_bw()+
-  theme(axis.text.x=element_text(size=12, angle=90),
-        axis.text.y=element_text(size=12),
-        plot.title=element_text(face="bold",vjust = 1,hjust = 0.5)) +
   annotate("text", x = 0.4, y = 1.0, label = "red = OD450(1), orange = OD450(2)")
 
 n2 <- ggplot(Group2, aes(IgG, OD4502A)) +
@@ -46,10 +52,6 @@ n2 <- ggplot(Group2, aes(IgG, OD4502A)) +
   geom_line(color = "green") + geom_point() +
   scale_x_continuous (lim = c(0,0.6), breaks = seq(0,0.6,0.02)) +
   scale_y_continuous (breaks = seq(0,2.8, by = 0.10)) +
-  theme_bw()+
-  theme(axis.text.x=element_text(size=12, angle=90),
-        axis.text.y=element_text(size=12),
-        plot.title=element_text(face="bold",vjust = 1,hjust = 0.5)) +
   annotate("text", x = 0.4, y = 1.0, label = "green = OD450(1), yellow = OD450(2)")
 
 n3 <- ggplot(Group3, aes(IgG, OD4503A)) +
@@ -58,11 +60,7 @@ n3 <- ggplot(Group3, aes(IgG, OD4503A)) +
   geom_line(color = "blue") + geom_point() +
   scale_x_continuous (lim = c(0,0.6), breaks = seq(0,0.6,0.02)) +
   scale_y_continuous (breaks = seq(0,2.8, by = 0.10)) +
-  theme_bw()+
-  theme(axis.text.x=element_text(size=12, angle=90),
-        axis.text.y=element_text(size=12),
-        plot.title=element_text(face="bold",vjust = 1,hjust = 0.5)) + 
-annotate("text", x = 0.4, y = 1.0, label = "blue = OD450(1), purple = OD450(2)")
+  annotate("text", x = 0.4, y = 1.0, label = "blue = OD450(1), purple = OD450(2)")
 
 #Data analysis - Standard curve
 
@@ -73,41 +71,33 @@ s1 <-   ggplot(Group1, aes(IgG, mean1)) +
         geom_line(color = "red") + geom_point() +
         scale_x_continuous (lim = c(0,0.3), breaks = seq(0,0.3,0.01)) +
         scale_y_continuous (breaks = seq(0,2.5, by = 0.10)) +
-        theme_bw()+
-        theme(axis.text.x=element_text(size=12, angle=90),
-              axis.text.y=element_text(size=12),
-              plot.title=element_text(face="bold",vjust = 1,hjust = 0.5))
-        
-        
+
+   
 s2 <- ggplot(Group2, aes(IgG, mean2)) +
   ggtitle("Group 2 IgG concentration against the mean absorption (450nm) ") +
   labs(x = "IgG concentration", y = "Absorption (450nm)") +
   geom_line(color = "green") + geom_point() +  
   scale_x_continuous (lim = c(0,0.15), breaks = seq(0,0.15,0.01)) +
   scale_y_continuous (breaks = seq(0,2.5, by = 0.10)) +
-  theme_bw()+
-  theme(axis.text.x=element_text(size=12, angle=90),
-        axis.text.y=element_text(size=12),
-        plot.title=element_text(face="bold",vjust = 1,hjust = 0.5))
-
+  
 s3 <- ggplot(Group3, aes(IgG, mean3)) +
   ggtitle("Group 3 IgG concentration against the mean absorption (450nm)") +
   labs(x = "IgG concentration", y = "Absorption (450nm)") +
   geom_line(color = "blue") + geom_point() + 
   scale_x_continuous (lim = c(0,0.15), breaks = seq(0,0.15,0.01)) +
   scale_y_continuous (breaks = seq(0,2.5, by = 0.10)) +
-  theme_bw()+
-  theme(axis.text.x=element_text(size=12, angle=90),
-        axis.text.y=element_text(size=12),
-        plot.title=element_text(face="bold",vjust = 1,hjust = 0.5)) 
+  
   
 #Plot absorbance graph with two absorptions measured
-n1
-n2
-n3
+bwtheme(n1)
+bwtheme(n2)
+bwtheme(n3)
 #Plot standard graph with linear limits on each group
-s1 
-s2
-s3
+bwtheme(s1) 
+bwtheme(s2)
+bwtheme(s3)
+
+
+
 
 
