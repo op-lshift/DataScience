@@ -1,2 +1,2 @@
 # Data Science
-Repo stores all projects involving any data. Usually codes/visualises with R/Rstudio.
+Repo stores all projects involving any data. Usually codes/visualises with R/Rstudio/Py.
